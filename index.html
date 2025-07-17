@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Ultra Modern Profile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for text shadow */
+        .text-shadow-lg {
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        /* Ensure font-inter is applied */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-800 flex items-center justify-center p-4 text-gray-100">
+
+    <div class="w-full max-w-md bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-3xl shadow-2xl p-6 md:p-8 border border-white border-opacity-20 transform transition-all duration-300 hover:scale-[1.01]">
+
+        <!-- Profile Header -->
+        <div class="flex flex-col items-center mb-8">
+            <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-purple-400 shadow-xl transform transition-transform duration-300 hover:scale-105">
+                <img
+                    src="https://placehold.co/400x400/FFDDC1/800000?text=Your+Photo"
+                    alt="Profile"
+                    class="w-full h-full object-cover"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/FFDDC1/800000?text=Profile';"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30"></div>
+            </div>
+            <h1 class="mt-6 text-3xl md:text-4xl font-extrabold text-white tracking-tight text-shadow-lg">
+                @YourAwesomeHandle
+            </h1>
+            <p class="text-md md:text-lg text-purple-200 mt-2 font-light">
+                Digital Creator | Visionary | Explorer
+            </p>
+        </div>
+
+        <!-- Bio Section -->
+        <div class="mb-8 text-center">
+            <p class="text-gray-200 text-base md:text-lg leading-relaxed px-2">
+                Crafting immersive digital experiences and sharing my journey through code, design, and adventure. Join me as I explore the intersection of technology and creativity.
+            </p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="mb-8">
+            <a
+                href="#"
+                class="flex items-center justify-center bg-white bg-opacity-15 hover:bg-opacity-25 rounded-xl py-3 px-4 mb-4 text-white text-lg font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span class="mr-3 text-2xl">🔗</span>
+                My Portfolio
+            </a>
+            <a
+                href="#"
+                class="flex items-center justify-center bg-white bg-opacity-15 hover:bg-opacity-25 rounded-xl py-3 px-4 mb-4 text-white text-lg font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span class="mr-3 text-2xl">✨</span>
+                Latest Project
+            </a>
+            <a
+                href="#"
+                class="flex items-center justify-center bg-white bg-opacity-15 hover:bg-opacity-25 rounded-xl py-3 px-4 mb-4 text-white text-lg font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span class="mr-3 text-2xl">💼</span>
+                Connect on LinkedIn
+            </a>
+            <a
+                href="#"
+                class="flex items-center justify-center bg-white bg-opacity-15 hover:bg-opacity-25 rounded-xl py-3 px-4 mb-4 text-white text-lg font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span class="mr-3 text-2xl">💖</span>
+                Support My Work
+            </a>
+        </div>
+
+        <!-- Highlights Section -->
+        <div class="mb-8">
+            <h2 class="text-xl md:text-2xl font-bold text-white mb-4 text-center">Highlights</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <!-- Highlight Item 1 -->
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110">
+                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">✈️</span>
+                    </div>
+                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
+                        Travels
+                    </p>
+                </div>
+                <!-- Highlight Item 2 -->
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110">
+                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">💻</span>
+                    </div>
+                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
+                        Code
+                    </p>
+                </div>
+                <!-- Highlight Item 3 -->
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110">
+                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">🎨</span>
+                    </div>
+                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
+                        Art
+                    </p>
+                </div>
+                <!-- Highlight Item 4 -->
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110">
+                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">🍔</span>
+                    </div>
+                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
+                        Food
+                    </p>
+                </div>
+                <!-- Highlight Item 5 -->
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110">
+                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">🌿</span>
+                    </div>
+                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
+                        Nature
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-gray-300 text-sm">
+            <p>&copy; 2025 YourName. All rights reserved.</p>
+        </div>
+    </div>
+
+</body>
+</html>
+
