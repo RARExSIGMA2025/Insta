@@ -1,219 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Ultra Modern Profile</title>
-    <!-- Tailwind CSS CDN -->
+    <title>0xAyu - Ethical Hacker Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        /* Custom CSS for text shadow */
-        .text-shadow-lg {
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Ensure font-inter is applied */
         body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
-        }
+            font-family: 'Share Tech Mono', monospace;
+            background: radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%);
+            color: #00ff99;
+            overflow-x: hidden;
+        }body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 20px 20px;
+        z-index: -1;
+    }
 
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .glitch-text {
+        position: relative;
+        animation: glitch 1s infinite;
+        text-shadow:
+            2px 2px 0 #0ff,
+            -2px -2px 0 #f0f;
+    }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    @keyframes glitch {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+        100% { transform: translate(0); }
+    }
 
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
+    #loader {
+        font-family: 'Share Tech Mono', monospace;
+    }
+</style>
 
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.5) rotate(-30deg); }
-            60% { opacity: 1; transform: scale(1.1) rotate(10deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.7), 0 0 5px rgba(168, 85, 247, 0.5) inset; }
-            50% { box-shadow: 0 0 30px rgba(168, 85, 247, 1), 0 0 10px rgba(168, 85, 247, 0.8) inset; }
-        }
-
-        @keyframes rotate360 {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Apply Animations */
-        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
-        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
-        .animate-scale-in { animation: scaleIn 0.8s ease-out forwards; }
-        .animate-slide-in-left { animation: slideInLeft 0.6s ease-out forwards; }
-        .animate-pop-in { animation: popIn 0.7s ease-out forwards; }
-        .animate-pulse-glow { animation: pulseGlow 2s infinite alternate; }
-        .hover-rotate-360:hover { animation: rotate360 2s linear infinite; } /* Continuous rotation on hover */
-
-        /* Delay utilities for staggered animations */
-        .animation-delay-100 { animation-delay: 0.1s; }
-        .animation-delay-200 { animation-delay: 0.2s; }
-        .animation-delay-300 { animation-delay: 0.3s; }
-        .animation-delay-400 { animation-delay: 0.4s; }
-        .animation-delay-500 { animation-delay: 0.5s; }
-        .animation-delay-600 { animation-delay: 0.6s; }
-        .animation-delay-700 { animation-delay: 0.7s; }
-        .animation-delay-800 { animation-delay: 0.8s; }
-        .animation-delay-900 { animation-delay: 0.9s; }
-        .animation-delay-1000 { animation-delay: 1s; }
-    </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-800 flex items-center justify-center p-4 text-gray-100 relative">
-
-    <!-- Optional: Background particles/shapes for extra flair -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute w-20 h-20 bg-purple-400 rounded-full opacity-10 blur-3xl animate-bounce-slow" style="top: 10%; left: 5%;"></div>
-        <div class="absolute w-32 h-32 bg-pink-400 rounded-full opacity-10 blur-3xl animate-bounce-slow animation-delay-500" style="bottom: 15%; right: 10%;"></div>
-        <div class="absolute w-24 h-24 bg-blue-400 rounded-full opacity-10 blur-3xl animate-bounce-slow animation-delay-1000" style="top: 30%; right: 20%;"></div>
+<body class="flex items-center justify-center min-h-screen p-6 relative">
+    <!-- Loader -->
+    <div class="fixed inset-0 bg-black flex items-center justify-center text-green-400 text-xl z-50" id="loader">
+        <span id="typewriter">initializing...</span>
+    </div><main class="bg-black bg-opacity-30 border border-green-400 p-8 rounded-xl shadow-lg w-full max-w-md text-center relative z-10">
+    <div class="mb-6">
+        <img src="https://raw.githubusercontent.com/RARExSIGMA2025/Insta/main/pfp.jpg" 
+             alt="Profile" 
+             class="w-32 h-32 mx-auto rounded-full border-4 border-green-400 mb-4">
+        <h1 class="text-3xl glitch-text">0xAyu</h1>
+        <p class="text-sm mt-2">Ethical Hacker | Digital Nomad | Cyber Explorer</p>
     </div>
 
-    <div class="w-full max-w-md bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-3xl shadow-2xl p-6 md:p-8 border border-white border-opacity-20 transform transition-all duration-300 hover:scale-[1.01] relative z-10 opacity-0 animate-fade-in animation-delay-200">
-
-        <!-- Profile Header -->
-        <div class="flex flex-col items-center mb-8">
-            <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-purple-400 shadow-xl transform transition-transform duration-300 hover:scale-105 hover-rotate-360 animate-scale-in animation-delay-500">
-                <img
-                    src="https://raw.githubusercontent.com/RARExSIGMA2025/Insta/main/pfp.jpg"
-                    alt="Profile"
-                    class="w-full h-full object-cover"
-                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/FFDDC1/800000?text=Profile';"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30"></div>
-            </div>
-            <h1 class="mt-6 text-3xl md:text-4xl font-extrabold text-white tracking-tight text-shadow-lg opacity-0 animate-fade-in-up animation-delay-700">
-                @YourAwesomeHandle
-            </h1>
-            <p class="text-md md:text-lg text-purple-200 mt-2 font-light opacity-0 animate-fade-in-up animation-delay-800">
-                Digital Creator | Visionary | Explorer
-            </p>
-        </div>
-
-        <!-- Bio Section -->
-        <div class="mb-8 text-center opacity-0 animate-fade-in-up animation-delay-900">
-            <p class="text-gray-200 text-base md:text-lg leading-relaxed px-2">
-                Crafting immersive digital experiences and sharing my journey through code, design, and adventure. Join me as I explore the intersection of technology and creativity.
-            </p>
-        </div>
-
-        <!-- Links Section -->
-        <div class="mb-8">
-            <a
-                href="#"
-                class="flex items-center justify-center bg-white bg-opacity-15 hover:bg-opacity-25 rounded-xl py-3 px-4 mb-4 text-white text-lg font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75 opacity-0 animate-slide-in-left animation-delay-1000"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <span class="mr-3 text-2xl">🔗</span>
-                My Portfolio
-            </a>
-            <a
-                href="#"
-                class="flex items-center justify-center bg-white bg-opacity-15 hover:bg-opacity-25 rounded-xl py-3 px-4 mb-4 text-white text-lg font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75 opacity-0 animate-slide-in-left animation-delay-1100"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <span class="mr-3 text-2xl">✨</span>
-                Latest Project
-            </a>
-            <a
-                href="#"
-                class="flex items-center justify-center bg-white bg-opacity-15 hover:bg-opacity-25 rounded-xl py-3 px-4 mb-4 text-white text-lg font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75 opacity-0 animate-slide-in-left animation-delay-1200"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <span class="mr-3 text-2xl">💼</span>
-                Connect on LinkedIn
-            </a>
-            <a
-                href="#"
-                class="flex items-center justify-center bg-white bg-opacity-15 hover:bg-opacity-25 rounded-xl py-3 px-4 mb-4 text-white text-lg font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75 opacity-0 animate-slide-in-left animation-delay-1300"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <span class="mr-3 text-2xl">💖</span>
-                Support My Work
-            </a>
-        </div>
-
-        <!-- Highlights Section -->
-        <div class="mb-8">
-            <h2 class="text-xl md:text-2xl font-bold text-white mb-4 text-center opacity-0 animate-fade-in-up animation-delay-1400">Highlights</h2>
-            <div class="flex flex-wrap justify-center gap-4">
-                <!-- Highlight Item 1 -->
-                <div class="flex flex-col items-center group cursor-pointer opacity-0 animate-pop-in animation-delay-1500">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110 animate-pulse-glow">
-                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">✈️</span>
-                    </div>
-                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
-                        Travels
-                    </p>
-                </div>
-                <!-- Highlight Item 2 -->
-                <div class="flex flex-col items-center group cursor-pointer opacity-0 animate-pop-in animation-delay-1600">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110 animate-pulse-glow">
-                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">💻</span>
-                    </div>
-                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
-                        Code
-                    </p>
-                </div>
-                <!-- Highlight Item 3 -->
-                <div class="flex flex-col items-center group cursor-pointer opacity-0 animate-pop-in animation-delay-1700">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110 animate-pulse-glow">
-                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">🎨</span>
-                    </div>
-                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
-                        Art
-                    </p>
-                </div>
-                <!-- Highlight Item 4 -->
-                <div class="flex flex-col items-center group cursor-pointer opacity-0 animate-pop-in animation-delay-1800">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110 animate-pulse-glow">
-                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">🍔</span>
-                    </div>
-                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
-                        Food
-                    </p>
-                </div>
-                <!-- Highlight Item 5 -->
-                <div class="flex flex-col items-center group cursor-pointer opacity-0 animate-pop-in animation-delay-1900">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white bg-opacity-15 flex items-center justify-center border-2 border-purple-400 group-hover:border-pink-300 shadow-lg transform transition-all duration-300 group-hover:scale-110 animate-pulse-glow">
-                        <span class="text-3xl md:text-4xl group-hover:animate-bounce">🌿</span>
-                    </div>
-                    <p class="mt-2 text-sm md:text-base text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
-                        Nature
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="mt-8 text-center text-gray-300 text-sm opacity-0 animate-fade-in animation-delay-2000">
-            <p>&copy; 2025 YourName. All rights reserved.</p>
-        </div>
+    <div class="text-left bg-green-800 bg-opacity-10 p-4 rounded mb-6 text-sm">
+        <p>$ whoami</p>
+        <p class="ml-4">Ayu - seeker of bugs, protector of bytes.</p>
+        <p class="mt-2">$ mission</p>
+        <p class="ml-4">Defend the web. Build ethical code. Disappear in the shadows.</p>
     </div>
+
+    <div class="space-y-4">
+        <a href="https://www.instagram.com/4xsukoon?igsh=bnFqejg2MnhlMmUx" target="_blank"
+           class="block w-full py-3 px-4 border border-green-400 text-green-300 hover:bg-green-800 hover:bg-opacity-20 rounded transition-all">
+            📷 Instagram
+        </a>
+        <a href="#" class="block w-full py-3 px-4 border border-green-400 text-green-300 hover:bg-green-800 hover:bg-opacity-20 rounded transition-all">
+            💻 GitHub
+        </a>
+        <a href="#" class="block w-full py-3 px-4 border border-green-400 text-green-300 hover:bg-green-800 hover:bg-opacity-20 rounded transition-all">
+            👨‍💻 Projects
+        </a>
+        <a href="#" class="block w-full py-3 px-4 border border-green-400 text-green-300 hover:bg-green-800 hover:bg-opacity-20 rounded transition-all">
+            📄 Resume
+        </a>
+    </div>
+
+    <footer class="mt-6 text-xs text-green-600">
+        <p>Last Access: <span id="lastAccess"></span></p>
+        <p>&copy; 4xSukoon. All rights reserved.</p>
+    </footer>
+</main>
+
+<script>
+    const loader = document.getElementById("loader");
+    const text = ">> Welcome, 0xAyu_Initializing Portfolio...";
+    let i = 0;
+    const typewriter = document.getElementById("typewriter");
+
+    function type() {
+        if (i < text.length) {
+            typewriter.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, 50);
+        } else {
+            setTimeout(() => loader.style.display = "none", 1000);
+        }
+    }
+    window.onload = type;
+
+    document.getElementById("lastAccess").innerText = new Date().toLocaleString();
+</script>
 
 </body>
 </html>
-
