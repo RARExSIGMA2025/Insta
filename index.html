@@ -1,282 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>4xSukoon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4xSukoon | Access Terminal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       height: 100%;
-      background-color: #000;
-      font-family: 'Courier New', monospace;
-      color: #fff;
-      overflow: hidden;
-      cursor: crosshair;
-    }
-
-    .intro {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
       background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      animation: fadeOut 2.5s ease 2.5s forwards;
-    }
-
-    .intro h1 {
       color: #00ffe0;
-      font-size: 1.8rem;
-      border-right: 2px solid #00ffe0;
-      white-space: nowrap;
+      font-family: 'Courier New', monospace;
       overflow: hidden;
-      animation: typing 2.5s steps(30, end), blink 0.5s step-end infinite alternate;
-    }
+    }.intro {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px #00ffe0;
+}
 
-    @keyframes typing {from { width: 0 } to { width: 24ch }}
-    @keyframes blink { 50% { border-color: transparent } }
-    @keyframes fadeOut { to { opacity: 0; visibility: hidden } }
+.intro .line {
+  opacity: 0;
+  animation: showLine 1s forwards;
+}
 
-    .container {
-      position: relative;
-      z-index: 1;
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-    }
+.intro .line:nth-child(1) { animation-delay: 0s; }
+.intro .line:nth-child(2) { animation-delay: 1s; }
+.intro .line:nth-child(3) { animation-delay: 2s; }
+.intro .line:nth-child(4) { animation-delay: 3s; }
+.intro .line:nth-child(5) { animation-delay: 4s; }
 
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image: radial-gradient(#00ffe033 1px, transparent 1px);
-      background-size: 20px 20px;
-      animation: moveBG 60s linear infinite;
-      z-index: 0;
-    }
+@keyframes showLine {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
 
-    @keyframes moveBG {
-      0% { background-position: 0 0; }
-      100% { background-position: 1000px 1000px; }
-    }
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
 
-    .glow {
-      font-size: 3rem;
-      color: #00ffe0;
-      margin: 20px 0;
-      animation: glitch 2s infinite;
-    }
+.main-content {
+  opacity: 0;
+  animation: fadeIn 2s ease 5.5s forwards;
+}
 
-    @keyframes glitch {
-      0% { text-shadow: 0 0 10px #00ffe0; }
-      25% { text-shadow: 2px -2px #0ff, -2px 2px #f0f; }
-      50% { text-shadow: 0 0 20px #00ffe0; }
-      75% { text-shadow: -2px 2px #0ff, 2px -2px #f0f; }
-      100% { text-shadow: 0 0 10px #00ffe0; }
-    }
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
 
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 3px solid #00ffe0;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px #00ffe0;
-      object-fit: cover;
-      animation: float 4s ease-in-out infinite;
-      transition: transform 0.3s;
-    }
+.bg-glow {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, rgba(0,255,224,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
 
-    .profile-pic:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px #00ffe0;
-    }
+.center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
+.center img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #00ffe0;
+  box-shadow: 0 0 20px #00ffe0;
+  animation: float 3s ease-in-out infinite;
+}
 
-    .typewriter {
-      font-size: 1.1rem;
-      color: #ccc;
-      min-height: 60px;
-      margin-bottom: 25px;
-      animation: flicker 1s infinite alternate;
-    }
+.center h1 {
+  font-size: 3rem;
+  margin: 20px 0;
+  text-shadow: 0 0 10px #00ffe0;
+}
 
-    @keyframes flicker {
-      from { opacity: 0.85; }
-      to { opacity: 1; text-shadow: 0 0 5px #0ff; }
-    }
+.center p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  color: #ccc;
+  text-shadow: 0 0 3px #0ff;
+}
 
-    .insta-link {
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-      color: #f5f5f5;
-      border: 2px solid #00ffe0;
-      padding: 10px 20px;
-      border-radius: 10px;
-      position: relative;
-      overflow: hidden;
-      transition: 0.3s ease;
-    }
+.btn {
+  margin-top: 30px;
+  background: transparent;
+  border: 2px solid #00ffe0;
+  color: #00ffe0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
 
-    .insta-link:hover {
-      background: #00ffe0;
-      color: #000;
-    }
+.btn:hover {
+  background: #00ffe0;
+  color: #000;
+  box-shadow: 0 0 15px #00ffe0;
+}
 
-    .insta-link::before {
-      content: "";
-      position: absolute;
-      width: 120%;
-      height: 120%;
-      top: -110%;
-      left: -10%;
-      background: rgba(0, 255, 224, 0.1);
-      transform: rotate(45deg);
-      transition: 0.6s;
-    }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 
-    .insta-link:hover::before {
-      top: 110%;
-    }
+.cursor-effect {
+  width: 15px;
+  height: 15px;
+  background: #00ffe0;
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 9999;
+}
 
-    .insta-link img {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-    }
-
-    @media (max-width: 600px) {
-      .glow { font-size: 2rem; }
-      .typewriter { font-size: 1rem; }
-      .profile-pic { width: 120px; height: 120px; }
-    }
-
-    /* Cursor Trail */
-    .cursor-dot {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: #00ffe0;
-      border-radius: 50%;
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
   </style>
 </head>
 <body>
+  <audio autoplay loop>
+    <source src="https://files.catbox.moe/javc3h.mp3" type="audio/mpeg">
+  </audio>  <div class="intro" id="intro">
+    <div class="line">[ SYSTEM BOOTING... ]</div>
+    <div class="line">[ SCANNING DIGITAL FINGERPRINT... ]</div>
+    <div class="line">[ AUTH ID: 4xSUKOON ]</div>
+    <div class="line">[ ACCESS GRANTED ]</div>
+    <div class="line">[ WELCOME TO THE MIND OF A GHOST ]</div>
+  </div>  <div class="main-content">
+    <div class="bg-glow"></div>
+    <div class="center">
+      <img src="https://raw.githubusercontent.com/RARExSIGMA2025/Insta/main/pfp.jpg" alt="pfp"/>
+      <h1>4xSUKOON</h1>
+      <p>Living like a legend. Breathing in shadows. Creating in silence. <br> Digital warrior with a cause — unknown but unforgettable.</p>
+      <a class="btn" href="https://instagram.com/4xsukoon" target="_blank"><i class="fab fa-instagram"></i> Enter My World</a>
+    </div>
+  </div>  <div class="cursor-effect" id="cursor"></div>  <script>
+    setTimeout(() => {
+      document.getElementById('intro').style.animation = 'fadeOut 1s forwards';
+    }, 5500);
 
-  <!-- 🎬 Intro -->
-  <div class="intro">
-    <h1>Initializing 4xSukoon Identity...</h1>
-  </div>
-
-  <!-- 🎧 Background Audio -->
-  <audio autoplay loop id="bgm" hidden>
-    <source src="https://files.catbox.moe/3yoe3z.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- 🔥 Main Container -->
-  <div class="container">
-    <img class="profile-pic" src="https://raw.githubusercontent.com/RARExSIGMA2025/Insta/main/pfp.jpg" alt="Profile Picture" />
-    <h1 class="glow">4xSukoon</h1>
-    <p class="typewriter" id="quote"></p>
-    <a href="https://www.instagram.com/4xsukoon" target="_blank" class="insta-link">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
-      <span>@4xSukoon</span>
-    </a>
-  </div>
-
-  <!-- 🧠 Quotes & Cursor Script -->
-  <script>
-    const quotes = [
-      "Ghosted the world. Upgraded my soul.",
-      "I log in silently, I leave a legacy loudly.",
-      "Life of a hacker. Peace in chaos. Code in silence.",
-      "No face, no case. Just @4xSukoon.",
-      "Privacy is power. Identity is a myth.",
-      "Sukoon isn’t luxury — it’s my weapon.",
-      "Legends don’t speak. They deploy.",
-      "This isn’t just a vibe. It’s a version update."
-    ];
-
-    let index = 0;
-    let charIndex = 0;
-    let currentQuote = '';
-    let isDeleting = false;
-
-    function type() {
-      const quoteEl = document.getElementById('quote');
-      if (index >= quotes.length) index = 0;
-      currentQuote = quotes[index];
-
-      if (!isDeleting) {
-        quoteEl.textContent = currentQuote.substring(0, charIndex++);
-        if (charIndex > currentQuote.length) {
-          isDeleting = true;
-          setTimeout(type, 2500);
-          return;
-        }
-      } else {
-        quoteEl.textContent = currentQuote.substring(0, charIndex--);
-        if (charIndex < 0) {
-          isDeleting = false;
-          index++;
-        }
-      }
-      setTimeout(type, isDeleting ? 30 : 65);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      type();
-      const audio = document.getElementById('bgm');
-      document.body.addEventListener('click', () => {
-        if (audio.paused) audio.play().catch(() => {});
-      });
-
-      // Cursor trail
-      for (let i = 0; i < 15; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'cursor-dot';
-        document.body.appendChild(dot);
-      }
-
-      const dots = Array.from(document.querySelectorAll('.cursor-dot'));
-      let coords = { x: 0, y: 0 };
-
-      document.addEventListener('mousemove', e => {
-        coords.x = e.clientX;
-        coords.y = e.clientY;
-      });
-
-      function animateDots() {
-        let x = coords.x;
-        let y = coords.y;
-
-        dots.forEach((dot, index) => {
-          const nextDot = dots[index + 1] || dots[0];
-          dot.style.left = x + 'px';
-          dot.style.top = y + 'px';
-          x += (nextDot.offsetLeft - x) * 0.3;
-          y += (nextDot.offsetTop - y) * 0.3;
-        });
-
-        requestAnimationFrame(animateDots);
-      }
-      animateDots();
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
     });
-  </script>
-</body>
+  </script></body>
 </html>
