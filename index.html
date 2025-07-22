@@ -12,33 +12,95 @@
     }
 
     body {
-      background-color: #0a0a0a;
-      color: #e0e0e0;
+      background-color: #000;
+      color: #fff;
       font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+
+    .intro {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
+      z-index: 99;
+      animation: fadeOut 3s ease 3s forwards;
+    }
+
+    .intro h1 {
+      color: #00ffe0;
+      font-size: 2rem;
+      text-shadow: 0 0 10px #00ffe0;
+      animation: typing 3s steps(30, end), blink .5s step-end infinite alternate;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #00ffe0;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 20ch }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden }
     }
 
     .container {
-      max-width: 600px;
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
     }
 
     .glow {
       font-size: 3rem;
       color: #00ffe0;
       text-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0, 0 0 30px #00ffe0;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #00ffe0; }
+      50% { text-shadow: 0 0 30px #00ffe0, 0 0 60px #00ffe0; }
+    }
+
+    .profile-pic {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid #00ffe0;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px #00ffe0;
+      object-fit: cover;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
 
     .typewriter {
       font-size: 1.2rem;
       color: #ccc;
       min-height: 80px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .insta-link {
@@ -74,7 +136,20 @@
   </style>
 </head>
 <body>
+
+  <!-- 🎬 Intro -->
+  <div class="intro">
+    <h1>Initializing 4xSukoon Identity...</h1>
+  </div>
+
+  <!-- 🎧 Audio -->
+  <audio autoplay loop id="bgm" hidden>
+    <source src="https://files.catbox.moe/3yoe3z.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- 🔥 Hacker UI -->
   <div class="container">
+    <img class="profile-pic" src="https://raw.githubusercontent.com/RARExSIGMA2025/Insta/main/pfp.jpg" alt="Profile Picture">
     <h1 class="glow">4xSukoon</h1>
     <p class="typewriter" id="quote"></p>
     <a href="https://www.instagram.com/4xsukoon" target="_blank" class="insta-link">
@@ -102,7 +177,6 @@
 
     function type() {
       const quoteEl = document.getElementById('quote');
-
       if (index >= quotes.length) index = 0;
       currentQuote = quotes[index];
 
@@ -123,7 +197,17 @@
       setTimeout(type, isDeleting ? 30 : 70);
     }
 
-    document.addEventListener('DOMContentLoaded', type);
+    document.addEventListener('DOMContentLoaded', () => {
+      type();
+
+      // Autoplay handling for mobile
+      const audio = document.getElementById('bgm');
+      document.body.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play().catch(() => {});
+        }
+      });
+    });
   </script>
 </body>
 </html>
