@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>4xSUKOON</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
@@ -12,20 +14,23 @@
       color: #00ff99;
       overflow: hidden;
     }
+
     .matrix {
       position: fixed;
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      background: black;
       z-index: -1;
     }
+
     canvas {
       display: block;
     }
+
     .crt {
       position: relative;
     }
+
     .crt::after {
       content: "";
       position: absolute;
@@ -41,9 +46,20 @@
       z-index: 10;
       pointer-events: none;
     }
+
+    .float-anim {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
     .glitch {
       animation: glitch 1s infinite;
     }
+
     @keyframes glitch {
       0% { transform: translate(0); }
       20% { transform: translate(-2px, 2px); }
@@ -52,79 +68,84 @@
       80% { transform: translate(1px, 2px); }
       100% { transform: translate(0); }
     }
+
     .typewriter {
       overflow: hidden;
       white-space: nowrap;
       border-right: 0.15em solid #00ff99;
       animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
     }
+
     @keyframes typing {
       from { width: 0 }
       to { width: 100% }
     }
+
     @keyframes blink-caret {
       from, to { border-color: transparent }
       50% { border-color: #00ff99 }
     }
-    .floaty {
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-    .flicker {
-      animation: flicker 3s infinite;
-    }
-    @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.4;
-      }
-    }
-    .wavy-text span {
+
+    .wave-text span {
       display: inline-block;
-      animation: wave 1.5s infinite;
+      animation: wave 1.3s infinite ease-in-out;
     }
-    .wavy-text span:nth-child(even) {
+
+    .wave-text span:nth-child(even) {
+      animation-delay: 0.1s;
+    }
+
+    .wave-text span:nth-child(odd) {
       animation-delay: 0.2s;
     }
+
     @keyframes wave {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .glow {
+      box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
     }
   </style>
-</head><body class="crt">
-  <canvas id="matrixCanvas" class="matrix"></canvas>  <div class="flex flex-col items-center justify-center h-screen text-center">
-    <img src="https://avatars.githubusercontent.com/u/111750161?v=4" alt="Profile" class="rounded-full w-40 h-40 shadow-lg border-4 border-green-400 floaty"><h1 class="text-4xl md:text-6xl mt-6 glitch flicker">4xSUKOON</h1>
-<p class="text-lg md:text-xl mt-4 text-green-400 typewriter">Access Granted: Identity Interface Online</p>
+</head>
+<body class="crt">
+  <canvas id="matrixCanvas" class="matrix"></canvas>
 
-<div class="mt-6 text-green-400 wavy-text">
-  <span>D</span><span>E</span><span>C</span><span>O</span><span>D</span><span>I</span><span>N</span><span>G</span>
-  <span>⠀</span>
-  <span>S</span><span>I</span><span>G</span><span>N</span><span>A</span><span>L</span><span>S</span>
-</div>
+  <div class="flex flex-col items-center justify-center h-screen text-center px-4">
+    <img src="https://avatars.githubusercontent.com/u/111750161?v=4"
+         alt="4xSUKOON"
+         class="rounded-full w-40 h-40 shadow-lg glow float-anim hover:scale-110 transition duration-500"/>
 
-<div id="socialLinks" class="mt-10 flex space-x-6"></div>
+    <h1 class="text-5xl md:text-6xl mt-6 text-green-400 glitch">4xSUKOON</h1>
 
-  </div><audio id="glitchAudio" src="https://assets.mixkit.co/active_storage/sfx/2625/2625-preview.mp3" preload="auto"></audio>
+    <p class="text-lg md:text-xl mt-4 text-green-300 typewriter">Access Granted: Interface Online</p>
+
+    <div class="mt-4 text-xl wave-text text-green-400">
+      <span>D</span><span>E</span><span>C</span><span>O</span><span>D</span><span>I</span><span>N</span><span>G</span>
+      <span>&nbsp;</span>
+      <span>S</span><span>I</span><span>L</span><span>E</span><span>N</span><span>C</span><span>E</span>
+    </div>
+
+    <div id="socialLinks" class="mt-10 flex space-x-6"></div>
+  </div>
+
+  <audio id="glitchAudio" src="https://assets.mixkit.co/active_storage/sfx/2625/2625-preview.mp3" preload="auto"></audio>
 
   <script>
-    // Matrix Effect
+    // Matrix Rain
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
 
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 
-    let chars = "01".split("");
-    let fontSize = 14;
-    let columns = canvas.width / fontSize;
-    let drops = Array(Math.floor(columns)).fill(1);
+    const chars = "01".split("");
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
 
-    function draw() {
+    function drawMatrix() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#0F0";
@@ -133,7 +154,6 @@
       for (let i = 0; i < drops.length; i++) {
         const text = chars[Math.floor(Math.random() * chars.length)];
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
@@ -141,37 +161,38 @@
       }
     }
 
-    setInterval(draw, 33);
+    setInterval(drawMatrix, 33);
 
-    // Audio Trigger on Load
+    // Play glitch audio on load
     window.addEventListener("DOMContentLoaded", () => {
       const audio = document.getElementById("glitchAudio");
       audio.play().catch(() => {});
     });
 
-    // Social Profiles
+    // Dynamic Social Links (only shown when added)
     const profiles = {
-      instagram: "https://www.instagram.com/4xsukoon"
+      instagram: "https://www.instagram.com/4xsukoon",
+      // github: "",
+      // telegram: "",
     };
 
-    const socialIcons = {
+    const icons = {
       instagram: "📷",
       github: "💻",
-      linkedin: "🔗",
-      resume: "📄",
-      projects: "📁"
+      telegram: "✈️",
     };
 
-    const socialLinks = document.getElementById("socialLinks");
-    Object.entries(profiles).forEach(([key, url]) => {
+    const container = document.getElementById("socialLinks");
+    for (const [name, url] of Object.entries(profiles)) {
       if (url) {
         const a = document.createElement("a");
         a.href = url;
         a.target = "_blank";
-        a.textContent = socialIcons[key] + " " + key.toUpperCase();
-        a.className = "text-green-400 hover:text-white transform hover:scale-105 transition text-lg font-mono";
-        socialLinks.appendChild(a);
+        a.textContent = icons[name] + " " + name.toUpperCase();
+        a.className = "text-green-400 hover:text-white transform hover:scale-110 transition text-lg font-mono";
+        container.appendChild(a);
       }
-    });
-  </script></body>
+    }
+  </script>
+</body>
 </html>
