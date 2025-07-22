@@ -5,54 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>4xSukoon</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    html, body {
+      height: 100%;
       background-color: #000;
-      color: #fff;
       font-family: 'Courier New', monospace;
+      color: #fff;
       overflow: hidden;
+      cursor: crosshair;
     }
 
     .intro {
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 99;
-      animation: fadeOut 3s ease 3s forwards;
+      z-index: 9999;
+      animation: fadeOut 2.5s ease 2.5s forwards;
     }
 
     .intro h1 {
       color: #00ffe0;
-      font-size: 2rem;
-      text-shadow: 0 0 10px #00ffe0;
-      animation: typing 3s steps(30, end), blink .5s step-end infinite alternate;
+      font-size: 1.8rem;
+      border-right: 2px solid #00ffe0;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 2px solid #00ffe0;
+      animation: typing 2.5s steps(30, end), blink 0.5s step-end infinite alternate;
     }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 20ch }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent }
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden }
-    }
+    @keyframes typing {from { width: 0 } to { width: 24ch }}
+    @keyframes blink { 50% { border-color: transparent } }
+    @keyframes fadeOut { to { opacity: 0; visibility: hidden } }
 
     .container {
       position: relative;
@@ -63,44 +49,73 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 20px;
       text-align: center;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: radial-gradient(#00ffe033 1px, transparent 1px);
+      background-size: 20px 20px;
+      animation: moveBG 60s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveBG {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
     }
 
     .glow {
       font-size: 3rem;
       color: #00ffe0;
-      text-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0, 0 0 30px #00ffe0;
-      margin-bottom: 20px;
-      animation: pulse 2s infinite;
+      margin: 20px 0;
+      animation: glitch 2s infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { text-shadow: 0 0 10px #00ffe0; }
-      50% { text-shadow: 0 0 30px #00ffe0, 0 0 60px #00ffe0; }
+    @keyframes glitch {
+      0% { text-shadow: 0 0 10px #00ffe0; }
+      25% { text-shadow: 2px -2px #0ff, -2px 2px #f0f; }
+      50% { text-shadow: 0 0 20px #00ffe0; }
+      75% { text-shadow: -2px 2px #0ff, 2px -2px #f0f; }
+      100% { text-shadow: 0 0 10px #00ffe0; }
     }
 
     .profile-pic {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       border: 3px solid #00ffe0;
       margin-bottom: 20px;
       box-shadow: 0 0 20px #00ffe0;
       object-fit: cover;
       animation: float 4s ease-in-out infinite;
+      transition: transform 0.3s;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #00ffe0;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-8px); }
     }
 
     .typewriter {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #ccc;
-      min-height: 80px;
-      margin-bottom: 30px;
+      min-height: 60px;
+      margin-bottom: 25px;
+      animation: flicker 1s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { opacity: 0.85; }
+      to { opacity: 1; text-shadow: 0 0 5px #0ff; }
     }
 
     .insta-link {
@@ -111,12 +126,30 @@
       border: 2px solid #00ffe0;
       padding: 10px 20px;
       border-radius: 10px;
-      transition: background 0.3s, color 0.3s;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease;
     }
 
     .insta-link:hover {
-      background-color: #00ffe0;
+      background: #00ffe0;
       color: #000;
+    }
+
+    .insta-link::before {
+      content: "";
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      top: -110%;
+      left: -10%;
+      background: rgba(0, 255, 224, 0.1);
+      transform: rotate(45deg);
+      transition: 0.6s;
+    }
+
+    .insta-link:hover::before {
+      top: 110%;
     }
 
     .insta-link img {
@@ -126,12 +159,20 @@
     }
 
     @media (max-width: 600px) {
-      .glow {
-        font-size: 2.2rem;
-      }
-      .typewriter {
-        font-size: 1rem;
-      }
+      .glow { font-size: 2rem; }
+      .typewriter { font-size: 1rem; }
+      .profile-pic { width: 120px; height: 120px; }
+    }
+
+    /* Cursor Trail */
+    .cursor-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #00ffe0;
+      border-radius: 50%;
+      pointer-events: none;
+      mix-blend-mode: screen;
     }
   </style>
 </head>
@@ -142,14 +183,14 @@
     <h1>Initializing 4xSukoon Identity...</h1>
   </div>
 
-  <!-- 🎧 Audio -->
+  <!-- 🎧 Background Audio -->
   <audio autoplay loop id="bgm" hidden>
     <source src="https://files.catbox.moe/3yoe3z.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 🔥 Hacker UI -->
+  <!-- 🔥 Main Container -->
   <div class="container">
-    <img class="profile-pic" src="https://raw.githubusercontent.com/RARExSIGMA2025/Insta/main/pfp.jpg" alt="Profile Picture">
+    <img class="profile-pic" src="https://raw.githubusercontent.com/RARExSIGMA2025/Insta/main/pfp.jpg" alt="Profile Picture" />
     <h1 class="glow">4xSukoon</h1>
     <p class="typewriter" id="quote"></p>
     <a href="https://www.instagram.com/4xsukoon" target="_blank" class="insta-link">
@@ -158,6 +199,7 @@
     </a>
   </div>
 
+  <!-- 🧠 Quotes & Cursor Script -->
   <script>
     const quotes = [
       "Ghosted the world. Upgraded my soul.",
@@ -194,19 +236,46 @@
           index++;
         }
       }
-      setTimeout(type, isDeleting ? 30 : 70);
+      setTimeout(type, isDeleting ? 30 : 65);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       type();
-
-      // Autoplay handling for mobile
       const audio = document.getElementById('bgm');
       document.body.addEventListener('click', () => {
-        if (audio.paused) {
-          audio.play().catch(() => {});
-        }
+        if (audio.paused) audio.play().catch(() => {});
       });
+
+      // Cursor trail
+      for (let i = 0; i < 15; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'cursor-dot';
+        document.body.appendChild(dot);
+      }
+
+      const dots = Array.from(document.querySelectorAll('.cursor-dot'));
+      let coords = { x: 0, y: 0 };
+
+      document.addEventListener('mousemove', e => {
+        coords.x = e.clientX;
+        coords.y = e.clientY;
+      });
+
+      function animateDots() {
+        let x = coords.x;
+        let y = coords.y;
+
+        dots.forEach((dot, index) => {
+          const nextDot = dots[index + 1] || dots[0];
+          dot.style.left = x + 'px';
+          dot.style.top = y + 'px';
+          x += (nextDot.offsetLeft - x) * 0.3;
+          y += (nextDot.offsetTop - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateDots);
+      }
+      animateDots();
     });
   </script>
 </body>
